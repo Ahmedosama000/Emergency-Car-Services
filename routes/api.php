@@ -4,6 +4,7 @@ use App\Http\Controllers\LoginController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\RegisterController;
+use App\Http\Controllers\WarshaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,7 +25,15 @@ use App\Http\Controllers\RegisterController;
 Route::group(['prefix'=>'user'],function(){
 
     Route::post('register',[RegisterController::class,'Register']);
+    Route::post('send-code',[RegisterController::class,'SendCode']);
+    Route::post('check-code',[RegisterController::class,'CheckCode']);
     Route::post('login',[LoginController::class,'Login']);
     Route::delete('logout',[LoginController::class,'Logout']);
+});
+
+Route::group(['prefix'=>'user','middleware'=>'auth:sanctum'],function(){
+
+    Route::get('warshas',[WarshaController::class,'GetAllWarsha']);
+    Route::get('warsha-info/{id}',[WarshaController::class,'GetWarshaInfo']);
 
 });

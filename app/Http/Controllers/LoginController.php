@@ -27,7 +27,7 @@ class LoginController extends Controller
         return $this->Data(compact('user'),"",200);
     }
 
-    public function logout(Request $request){
+    public function Logout(Request $request){
         
         $token = $request->header('Authorization');
         $authenticated = Auth::guard('sanctum')->user();
