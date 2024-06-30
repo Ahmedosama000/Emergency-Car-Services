@@ -14,7 +14,7 @@ class RegisterController extends Controller
     use ApiTrait;
 
     public function Register(RegisterRequest $request){
-        $data = $request->all();
+        $data = $request->except('password_confirmation');
         $data['password'] = Hash::make($request->password);
         $user = User::create($data);
         $user->token = "Bearer ".$user->createToken($request->email)->plainTextToken;

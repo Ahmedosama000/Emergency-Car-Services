@@ -21,7 +21,6 @@ use App\Http\Controllers\WarshaController;
 //     return $request->user();
 // });
 
-
 Route::group(['prefix'=>'user'],function(){
 
     Route::post('register',[RegisterController::class,'Register']);
@@ -31,9 +30,23 @@ Route::group(['prefix'=>'user'],function(){
     Route::delete('logout',[LoginController::class,'Logout']);
 });
 
-Route::group(['prefix'=>'user','middleware'=>'auth:sanctum'],function(){
+// Route::group(['prefix'=>'user','middleware'=>'auth:sanctum'],function(){
+
+//     Route::get('warshas',[WarshaController::class,'GetAllWarsha']);
+//     Route::get('warsha-info/{id}',[WarshaController::class,'GetWarshaInfo']);
+
+// });
+
+Route::group(['prefix'=>'user'],function(){
 
     Route::get('warshas',[WarshaController::class,'GetAllWarsha']);
     Route::get('warsha-info/{id}',[WarshaController::class,'GetWarshaInfo']);
 
+    Route::get('fanys',[WarshaController::class,'GetAllFany']);
+    Route::get('fany-info/{id}',[WarshaController::class,'GetFanyInfo']);
+
+    Route::get('wenshs',[WarshaController::class,'GetAllWenshs']);
+    Route::get('wensh-info/{id}',[WarshaController::class,'GetWenshInfo']);
+
 });
+
